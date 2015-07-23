@@ -24,8 +24,7 @@ public class ScreenGrabber {
     protected void screenChart() throws IOException, InterruptedException {
         init.JIRA.gotoMainPageWaitAuthorizePageAndLogin("mmusienko", "vfrcbv_1978");
         init.JIRA.gotoManageViewAndGoToIdeBornDown();
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File(new Date().toString().replaceAll(" ", "_")+".png"));
+
     }
 
 
