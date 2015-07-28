@@ -19,6 +19,7 @@
 /target
 /logs
 *chromedriver.*
+credjira
 # /dev-resources/
 /dev-resources/*.classpath
 /dev-resources/*.project

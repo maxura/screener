@@ -1,13 +1,11 @@
 package com.codenvy.corp;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Date;
+import java.util.Properties;
 
 /**
  * Created by maxura on 20.07.2015.
@@ -22,9 +20,25 @@ public class ScreenGrabber {
     }
 
     protected void screenChart() throws IOException, InterruptedException {
-        init.JIRA.gotoMainPageWaitAuthorizePageAndLogin("mmusienko", "vfrcbv_1978");
+        init.JIRA.gotoMainPageWaitAuthorizePageAndLogin(readCredential("user.login"), readCredential("user.password"));
         init.JIRA.gotoManageViewAndGoToIdeBornDown();
+        init.JIRA.gotoManageViewAndGrabCLDIDEBornDown();
+    }
 
+
+    /**
+     * Read credential from local file with paas credentials. Path to file had been defined in selenium.properties file in property
+     * "paas.credentials.file".
+     *
+     * @param credentialName
+     * @return
+     */
+    private static String readCredential(String credentialName) throws IOException {
+        Properties paasCredentials = new Properties();
+        FileInputStream propertiesFile = new FileInputStream(new File("").getAbsolutePath() + "/credjira");
+        paasCredentials.load(propertiesFile);
+        propertiesFile.close();
+        return paasCredentials.getProperty(credentialName);
     }
 
 
